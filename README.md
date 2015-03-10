@@ -5,6 +5,7 @@ Boilerplate html for very quick one-off single-page sites. Aren't you tired of r
 Rules: 
  * One site = one page
  * All JS includes via cdnjs or Google APIs CDN
- * Quick & dirty
+ * CSS3 and Flexbox; I don't care about legacy browsers anymore
+ * When in doubt, quick & dirty
 
 
