@@ -1,0 +1,58 @@
+/* CSS declarations go here */
+
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+.flexcontainer {
+	height:100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.centerdiv {
+	width: 80vw;
+	text-align: center;
+}
+
+input, button {
+	font-size: 1.1em;
+	font-weight: bold;
+	border-width: 5px;
+	border-style: solid;
+	padding: 10px;
+
+	&:required:invalid {
+		border-color: #FF6699;
+	}
+	&:required:valid {
+		border-color: #00FF99;
+	}
+}
+
+form#user-signup {
+
+	text-align: center;
+
+	& input {
+		text-align: center;
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	&:invalid button {
+		opacity: 0.2;
+	}
+	&:valid button {
+		opacity: 1;
+	}
+}
+
+

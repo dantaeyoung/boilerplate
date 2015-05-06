@@ -1,0 +1,32 @@
+<head>
+  <title>reic</title>
+</head>
+
+<body>
+	<div class="flexcontainer">
+		{{> info }}
+		{{> signup}}
+	</div>
+</body>
+
+<template name="info">
+	<div class="centerdiv">
+		This is a test for Stripe Checkout-based payment and membership signup. <a href="https://stripe.com/us/pricing">Stripe</a> takes 2.9% + 30 cents per transaction, which is on the low end of credit card processors
+	</div>
+</template>
+	
+<template name="signup">
+	<div><h1>Signup & Charge test!</h1></div>
+	<div id="user-signup-form">
+		<form id="user-signup">
+			<input id="user-first-name" type="text" placeholder="First Name" class="aligncenter" maxlength="64" required>
+			<input id="user-last-name" type="text" placeholder="Last Name" class="aligncenter" maxlength="64" required>
+			<input id="user-email" type="email" placeholder="Email" class="aligncenter" maxlength="64" required>
+			<button id="email-submit">Submit</button>
+		</form>
+	</div>
+	<div id="user-signup-success" style="display:none;">
+		<h2>Success! Welcome!</h2>
+	</div>
+
+</template>
