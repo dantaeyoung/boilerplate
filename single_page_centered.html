@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.2.3/showdown.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.4.0/lodash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
@@ -42,6 +43,10 @@ CUSTOMIZE BELOW
 
 <script>
 $(function() {
+	var converter = new showdown.Converter();
+	$(".markdown").each(function(i) {
+		$(this).html(converter.makeHtml($(this).html()));
+	});
 	//JAVASCRIPT HERE
 });
 </script>
