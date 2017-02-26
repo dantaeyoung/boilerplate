@@ -1,0 +1,33 @@
+{
+  "name": "boilerplate_site"
+  "version": "1.0.0",
+  "description": "### get started:",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.4",
+    "normalize-css": "^2.3.1",
+    "showdown": "^1.6.4"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.2",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --colors --progress --port 8082",
+    "build": "webpack --colors --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+GIT_REPO_HTTPS_HERE"
+  },
+  "author": "",
+  "license": "ISC",
+}
