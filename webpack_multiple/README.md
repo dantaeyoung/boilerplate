@@ -1,4 +1,4 @@
-## boilerplate webpack setup
+## boilerplate webpack setup - for multiple routes, express server, etc.
 
 ### start development server:
 
