@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate_site"
+  "name": "boilerplate_site",
   "version": "1.0.0",
   "description": "### get started:",
   "main": "index.js",
@@ -29,5 +29,5 @@
     "url": "git+GIT_REPO_HTTPS_HERE"
   },
   "author": "",
-  "license": "ISC",
+  "license": "ISC"
 }
