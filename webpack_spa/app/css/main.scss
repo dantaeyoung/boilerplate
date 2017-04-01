@@ -1,0 +1,26 @@
+
+$purple: purple;
+$pink: pink;
+$lightblue: #A2D5ED;
+$lightgrey: #C0C0C0;
+
+$buttonbc: cyan;
+$backgc: gray;
+$highlightcolor: lighten(#66def4, 2%);
+
+html {
+  font-family: "Cousine", "monospace", sans-serif;
+  background: $backgc;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  padding: 50px;
+  max-width: 700px;
+  margin: auto;
+}
+
