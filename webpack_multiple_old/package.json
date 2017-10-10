@@ -1,0 +1,33 @@
+{
+  "name": "webpack_multiple",
+  "version": "0.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "webpack --colors --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.14.1",
+    "jquery": "latest",
+    "reset-css": "^2.2.0",
+    "underscore": "latest",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-hot-middleware": "^2.17.0"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
+    "babel-preset-es2015": "^6.3.13",
+    "css-loader": "^0.23.1",
+    "expose-loader": "^0.7.1",
+    "imports-loader": "^0.6.5",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

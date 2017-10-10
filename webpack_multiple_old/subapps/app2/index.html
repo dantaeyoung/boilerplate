@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>highrise</title>
+  </head>
+  <body>
+	<div id="wrapper">
+		<div id="ui">
+			<div id="status">
+        <div id="header">status:</div>
+        <ul id="statuses">
+        </ul>
+      </div>
+			<div id="select">
+				<ul id="users">
+					<li class="button" id="user_Alice">Alice</li>
+					<li class="button" id="user_Bob">Bob</li>
+					<li class="button" id="user_Melanie">Melanie</li>
+					<li class="button" id="user_Dan">Dan</li>
+					<li class="button" id="user_Francis">Francis</li>
+					<li class="button" id="user_Fei">Fei</li>
+					<li class="button" id="user_Kira">Kira</li>
+					<li class="button" id="user_Sam">Sam</li>
+				</ul>
+				<ul id="actions">
+          <!-- ideally these should be received from PartyGoer.js also? -->
+					<li class="button" id="action_drink_water">is drinking water</li>
+          <li class="button" id="action_drink_alcohol">is drinking alcohol</li> 
+          <li class="button" id="action_eat">is eating</li> 
+					<li class="button" id="action_bathroom">is bathrooming</li>
+					<li class="button" id="action_talk">is talking</li>
+					<li class="button" id="action_entered">entered</li>
+					<li class="button" id="action_left">left</li>
+				</ul>
+			</div>
+			<div id="cancelconfirm">
+				<button id="cancel">cancel</button>
+				<button id="confirm">confirm</button>
+			</div>
+		</div>
+			<script src="ui_bundle.js"></script>
+		</div>
+	</body>
+</html>

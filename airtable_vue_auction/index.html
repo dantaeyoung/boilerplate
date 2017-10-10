@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+
+<script>
+$(function() {
+	//JAVASCRIPT HERE
+});
+
+
+</script>
+
+<!-- 
+///////////////
+CSS
+///////////////
+ -->
+
+<style type="text/css">
+body {
+  font-family: 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+.bodycontainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.centerdiv {
+}
+
+.artwork {
+	display: flex;
+  border: 10px solid pink;
+  float: left;
+  margin: 10px;
+}
+
+.artwork_image {
+max-width: 300px;
+  height: auto;
+}
+</style>
+
+<!-- 
+///////////////
+HTML
+///////////////
+ -->
+
+<title>TITLE</title>
+</head>
+
+
+<body>
+<div class="bodycontainer">
+	<div class="centerdiv">
+
+    <!-- everything below this is centered -->
+
+<div id="artwork_container">
+  <h1>Artworks</h1>
+  <ul>
+    <div class="artwork" v-for="record in records">
+      <div class="artwork_name">{{ record.fields.Name }}</div>
+      <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div>
+      <div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div>
+      
+      <div class="artwork_images" v-for="attachment in record.fields.Attachments">
+         <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" />
+      </div>
+
+    </div>
+  </ul>
+</div>
+
+    <!-- everything above this is centered -->
+
+	</div>
+</div>
+
+<script>
+
+var apiURL = "https://api.airtable.com/v0/appSUkudxLxnEx8vY/Items%20to%20bid%20on?api_key=keyoQpvlH7D3w9kIB";
+
+app = new Vue({
+
+  el: '#artwork_container',
+
+  data: {
+    records: null,
+    timer: null
+  },
+
+  created: function () {
+    this.fetchData();
+    this.timer = setInterval(this.fetchData, 30 * 1000)
+  },
+  beforeDestroy: function() {
+    clearInterval(this.timer)
+  },
+
+  methods: {
+    fetchData: function () {
+      var xhr = new XMLHttpRequest()
+      var self = this
+      xhr.open('GET', apiURL)
+      xhr.onload = function () {
+        self.records = JSON.parse(xhr.responseText).records
+        console.log("Fetched data.");
+      }
+      xhr.send()
+    }
+  }
+})
+</script>
+
+
+</body>
+</html>
+
+
+
+

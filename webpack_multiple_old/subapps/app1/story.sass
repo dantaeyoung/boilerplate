@@ -1,0 +1,97 @@
+$pink: pink
+$lightblue: #A2D5ED
+$buttonbc: $lightblue
+
+$backgc: $pink
+
+html
+  font-family: 'Cousine', 'monospace', sans-serif
+  background: $backgc
+
+body
+  height: 100vh
+  width: 100vw
+  margin: 0
+  padding: 0
+
+#wrapper 
+  padding: 50px 
+  max-width: 1000px
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  margin: auto
+
+#wrapper *
+//  border: 1px solid black
+
+#storydisplay
+  height: 100%
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  justify-content: center
+
+
+#story
+  font-size: 0.9em
+  background-color: lighten($backgc, 5%)
+
+  & #header
+    height: 20px
+    width: 100%
+    padding: 15px
+    box-sizing: border-box;
+
+    display: flex
+    justify-content: center
+    flex-direction: column
+    background-color: lighten($backgc, 8%)
+
+  & #storylines
+    height: 80vh;
+    overflow: scroll
+    padding: 15px 30px
+    list-style-type: none
+
+::-webkit-scrollbar
+  -webkit-appearance: none;
+  width: 7px;
+::-webkit-scrollbar-thumb
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+
+
+
+
+$lightgrey: #C0C0C0
+
+
+.storyline
+  margin-bottom: 10px
+  border-radius: 4px
+  padding: 12px
+
+  background-color: lighten($backgc, 1%)
+
+  & .time
+    &::after
+      content: " - ";
+
+  & .users
+    margin-top: 6px
+    display: block
+    font-family: 'Fredoka One', cursive;
+    &::after
+      content: " - ";
+
+  & .action
+    display: block
+    margin-top: 6px
+    font-size: 1.2em
+    font-family: 'Fredoka One', cursive;
+
+

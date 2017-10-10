@@ -1,0 +1,39 @@
+{
+  "title": "Alignment",
+  "description": "This is a chart of D&D Alignment",
+  "axes": {
+    "chaoticness": {
+      "axis" : "x",
+      "labels": ["Lawful", "Chaotic"]
+    },
+    "goodness": {
+      "axis" : "y",
+      "labels": ["Evil", "Good"]
+    }
+  },
+  "questions": [
+  {
+    "type": "text",
+    "qid": "name",
+    "question": "What's your name?"
+  },
+  {
+    "type": "likert",
+    "qid": "meeting_cancel_elated",
+    "question": "You feel secretly elated when a meeting is canceled.",
+    "func": "return {'chaoticness': 0.5 * ans }"
+  },
+  {
+    "type": "likert",
+    "qid": "turtle_flip",
+    "question": "If you see a turtle upside on the ground, you would help flip it over.",
+    "func": "return {'goodness': 1.0 * ans }"
+  },
+  {
+    "type": "likert",
+    "qid": "altered_states",
+    "question": "Altered states are not desirable to you.",
+    "func": "return {'chaoticness': -0.2 * ans }"
+  }]
+}
+
