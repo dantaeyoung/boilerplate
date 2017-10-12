@@ -29,9 +29,12 @@ body {
 }
 .bodycontainer {
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	flex-direction: row;
+}
+
+#bid_form iframe {
+  width: 300px;
+  height: 100%;
 }
 
 .centerdiv {
@@ -62,6 +65,9 @@ HTML
 
 <body>
 <div class="bodycontainer">
+<div id="bid_form">
+  <iframe class="airtable-embed" src="https://airtable.com/embed/shrOKZPq0CKzZACRY?backgroundColor=cyan" frameborder="0" onmousewheel=""  style="background: transparent; border: 1px solid #ccc;"></iframe>
+</div>
 	<div class="centerdiv">
 
     <!-- everything below this is centered -->
@@ -71,6 +77,7 @@ HTML
   <ul>
     <div class="artwork" v-for="record in records">
       <div class="artwork_name">{{ record.fields.Name }}</div>
+      <div class="artwork_description">{{ record.fields.Description }}</div>
       <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div>
       <div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div>
       
