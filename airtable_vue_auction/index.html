@@ -180,24 +180,24 @@ AVERY SINGER, BEN SISTO, MEREDYTH SPARKS, A.L. STEINER, CHEYNEY THOMPSON
 		<h1></h1>
 			<div class="artwork" v-for="record in records">
 					<div class="artwork_images" v-for="attachment in record.fields.Attachments">
-					 <a v-bind:href="attachment.thumbnails.large.url" target="new">
-					 <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" />
+             <a v-bind:href="attachment.thumbnails.large.url" target="new">
+               <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" />
 						 </a>
-								<div class="info">
-										<div class="artwork_artist">{{ record.fields['Artist'] }}</div>
-										<div class="artwork_title_year">{{ record.fields['Title-Year'] }}</div>
-										<div class="artwork_medium_dimensions">{{ record.fields['Medium-Dimensions'] }}</div>
-										<div class="artwork_edition">{{ record.fields['Edition'] }}</div>
-										
-										<div class="artwork_courtesy">{{ record.fields['Courtesy'] }}</div>
-										
-                    <!-- <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div> -->
-										<div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div> 
-								</div>
-					</div>
-			</div>
-	</div>
-</div>
+          </div>
+          <div class="info">
+            <div class="artwork_artist">{{ record.fields['Artist'] }}</div>
+            <div class="artwork_title">{{ record.fields['Title'] }}</div>
+            <div class="artwork_year">{{ record.fields['Year'] }}</div>
+            <div class="artwork_medium_dimensions">{{ record.fields['Medium-Dimensions'] }}</div>
+            <div class="artwork_edition">{{ record.fields['Edition'] }}</div>
+            
+            <div class="artwork_courtesy">{{ record.fields['Courtesy'] }}</div>
+            
+            <!-- <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div> -->
+            <div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div> 
+        </div>
+      </div>
+  </div>
 
 
 
