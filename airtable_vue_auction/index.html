@@ -28,29 +28,82 @@ body {
 	height: 100%;
 }
 .bodycontainer {
-	display: flex;
-	flex-direction: row;
+  display: block;
+  margin: 0px 250px 0px 0px;
 }
 
 #bid_form iframe {
+	text-align: right;
   width: 300px;
   height: 100%;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  transform: scale(0.75);
+  transform-origin: top right;
+  height: calc(100% / 0.75);
 }
 
-.centerdiv {
+#artwork_container {
+	margin:0px 0px 0px 30px;
 }
 
 .artwork {
-	display: flex;
-  border: 10px solid pink;
-  float: left;
-  margin: 10px;
+    display: block;
+    float: left;
+    margin: 0px 10px 10px 0px;
+    background-color: #f1faff;
+    padding: 10px;
+    max-width: 300px;
+    text-align: center;
+}
+.artwork_image {
+    max-height: 150px;
+    max-height: 150px
+    height: auto;
+    float:none;
+}
+.info    {
+    text-align: left;
+}
+.header    {
+    display:block;
+    width:930px;
+    margin:30px 0px 40px 30px;
+}
+.address pre    {
+    float:left;
+    font-weight:bold;
+    font-size:12pt;
+    width:700px;
+    padding:9px 0px 8px 0px;
+    
 }
 
-.artwork_image {
-max-width: 300px;
-  height: auto;
+.unlocal-text    {
+    float:none;
+    font-weight:normal;
+    font-size:10pt;
+    width:750px;
+    text-align:justify;
+    line-height:20px;
+    padding:30px 0px 0px 0px;
 }
+
+.logo    {
+    float:right;
+}
+h3    {
+    font-weight:normal;
+}
+h3.artists    {
+    font-size:10pt;
+}
+h2    {
+    font-weight:normal;
+    font-size:11pt;
+}
+
 </style>
 
 <!-- 
@@ -64,35 +117,90 @@ HTML
 
 
 <body>
-<div class="bodycontainer">
+
 <div id="bid_form">
   <iframe class="airtable-embed" src="https://airtable.com/embed/shrOKZPq0CKzZACRY?backgroundColor=cyan" frameborder="0" onmousewheel=""  style="background: transparent; border: 1px solid #ccc;"></iframe>
 </div>
-	<div class="centerdiv">
 
-    <!-- everything below this is centered -->
+<div class="bodycontainer">
 
-<div id="artwork_container">
-  <h1>Artworks</h1>
-  <ul>
-    <div class="artwork" v-for="record in records">
-      <div class="artwork_name">{{ record.fields.Name }}</div>
-      <div class="artwork_description">{{ record.fields.Description }}</div>
-      <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div>
-      <div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div>
-      
-      <div class="artwork_images" v-for="attachment in record.fields.Attachments">
-         <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" />
-      </div>
 
+<div class="header">
+    <div class="address">
+    <pre>
+Sunday, October 29th, 6–8pm
+    
+Klaus von Nichtssagend Gallery 
+54 Ludlow Street
+New York, NY, 10002
+    </pre>
+        <div class="logo">
+        <img src="logo.jpg" />
+        </div>
     </div>
-  </ul>
+    <div class="unlocal-text">
+<h3>
+UnLocal is a non-profit law firm that provides free legal 
+representation and education for immigrants in New York City. 
+They focus on the exceptionally difficult cases of people who 
+are facing deportation, primarily refugees and asylum seekers.
+</h3>
+<h3>
+With this auction, our goal is to raise enough funding for 
+UnLocal to hire another immigration attorney full-time.
+</h3>
+<h3>
+Bidding will begin online Sunday, October 22nd, one (1) week 
+prior to the event. The Sunday, October 29th event will take 
+place from 6-8pm at Klaus von Nichtssagend gallery and will be 
+a combination of silent and live auction, with absentee bidding 
+facilitated through our online platform.
+</h3>
+<h2>
+Works by:
+</h2>
+<h3 class="artists">
+DOUG ASHFORD, FIA BACKSTRÖM, SEBASTIAN BLACK, SASCHA BRAUNIG, TOM BURR, 
+JOSHUA CALEB WEIBLEY, ALEX CARVER, SUSAN CIANCIOLO, PHOEBE d’HEURLE, 
+MOYRA DAVEY, BENJAMIN DEGEN, LIZ DESCHENES, JESSICA DICKINSON,
+ALEX DODGE, MARCEL DUCHAMP, ROBIN F WILLIAMS, PETER FEND, LEON FINLEY, 
+ANDREW FRANCIS, SARA GREENBERGER RAFFERTY, IVY HALDEMAN, MARC HANDELMAN, 
+SHARON HAYES, HANAN HILWÉ, ADELITA HUSNI-BEY, BUTT JOHNSON, 
+CHRISTOPHER K. HO, SAM LEWITT, PAM LINS, MATT MILLER, R.H. QUAYTMAN, 
+EILEEN QUINLAN, BLAKE RAYNE, KARIN SCHNEIDER, PIETER SCHOOLWERTH, 
+AVERY SINGER, BEN SISTO, MEREDYTH SPARKS, A.L. STEINER, CHEYNEY THOMPSON
+</h3>
+    </div>
 </div>
 
-    <!-- everything above this is centered -->
 
+
+	<div id="artwork_container">
+		<h1></h1>
+			<div class="artwork" v-for="record in records">
+					<div class="artwork_images" v-for="attachment in record.fields.Attachments">
+					 <a v-bind:href="attachment.thumbnails.large.url" target="new">
+					 <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" />
+						 </a>
+								<div class="info">
+										<div class="artwork_artist">{{ record.fields['Artist'] }}</div>
+										<div class="artwork_title_year">{{ record.fields['Title-Year'] }}</div>
+										<div class="artwork_medium_dimensions">{{ record.fields['Medium-Dimensions'] }}</div>
+										<div class="artwork_edition">{{ record.fields['Edition'] }}</div>
+										
+										<div class="artwork_courtesy">{{ record.fields['Courtesy'] }}</div>
+										
+										<!-- <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div>
+										<div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div> -->
+								</div>
+					</div>
+			</div>
 	</div>
 </div>
+
+
+
+
 
 <script>
 
