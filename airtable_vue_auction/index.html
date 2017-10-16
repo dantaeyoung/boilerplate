@@ -56,6 +56,7 @@ body {
     padding: 10px;
     max-width: 300px;
     text-align: center;
+    height: 300px;
 }
 .artwork_image {
     max-height: 150px;
@@ -190,8 +191,8 @@ AVERY SINGER, BEN SISTO, MEREDYTH SPARKS, A.L. STEINER, CHEYNEY THOMPSON
 										
 										<div class="artwork_courtesy">{{ record.fields['Courtesy'] }}</div>
 										
-										<!-- <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div>
-										<div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div> -->
+                    <!-- <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div> -->
+										<div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div> 
 								</div>
 					</div>
 			</div>
@@ -204,7 +205,7 @@ AVERY SINGER, BEN SISTO, MEREDYTH SPARKS, A.L. STEINER, CHEYNEY THOMPSON
 
 <script>
 
-var apiURL = "https://api.airtable.com/v0/appSUkudxLxnEx8vY/Items%20to%20bid%20on?api_key=keyoQpvlH7D3w9kIB";
+var apiURL = "https://api.airtable.com/v0/appSUkudxLxnEx8vY/Items%20to%20bid%20on?api_key=keyoQpvlH7D3w9kIB&view=Bidding%20Display";
 
 app = new Vue({
 
