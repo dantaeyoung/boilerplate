@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,10 +9,8 @@
 
 <script>
 $(function() {
-	//JAVASCRIPT HERE
+    //JAVASCRIPT HERE
 });
-
-
 </script>
 
 <!-- 
@@ -23,17 +22,16 @@ CSS
 <style type="text/css">
 body {
   font-family: 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
-	margin: 0px;
-	padding: 0px;
-	height: 100%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
 }
 .bodycontainer {
   display: block;
   margin: 0px 250px 0px 0px;
 }
-
 #bid_form iframe {
-	text-align: right;
+    text-align: right;
   width: 300px;
   height: 100%;
   position: fixed;
@@ -43,9 +41,28 @@ body {
   transform-origin: top right;
   height: calc(100% / 0.75);
 }
-
 #artwork_container {
-	margin:0px 0px 0px 30px;
+    margin:0px 0px 30px 30px;
+    float:left;
+}
+.footer    {
+    margin:30px 0px 30px 30px;
+    color:grey;
+}
+.artwork_courtesy, .artwork_emv {
+    padding:8px 0px 0px 0px;
+}
+
+.artwork_title    {
+    font-style:italic;
+}
+
+.artwork_year    {
+    font-style:normal;
+}
+
+.artwork_maxbid_amount    {
+    font-weight:bold;
 }
 
 .artwork {
@@ -54,9 +71,10 @@ body {
     margin: 0px 10px 10px 0px;
     background-color: #f1faff;
     padding: 10px;
-    max-width: 300px;
+    width: 245px;
     text-align: center;
-    height: 300px;
+    height: 340px;
+    font-size:10pt;
 }
 .artwork_image {
     max-height: 150px;
@@ -65,7 +83,7 @@ body {
     float:none;
 }
 .info    {
-    text-align: left;
+    text-align: center;
 }
 .header    {
     display:block;
@@ -77,10 +95,10 @@ body {
     font-weight:bold;
     font-size:12pt;
     width:700px;
-    padding:9px 0px 8px 0px;
+    padding:9px 0px 0px 0px;
+    font-family:helvetica;
     
 }
-
 .unlocal-text    {
     float:none;
     font-weight:normal;
@@ -88,9 +106,8 @@ body {
     width:750px;
     text-align:justify;
     line-height:20px;
-    padding:30px 0px 0px 0px;
+    padding:20px 0px 0px 0px;
 }
-
 .logo    {
     float:right;
 }
@@ -104,7 +121,30 @@ h2    {
     font-weight:normal;
     font-size:11pt;
 }
+h1
+    {
+    font-size:20pt;
+    color:#293b92;
+    margin:0px 0px -18px 0px;    
+}
+.header a:link, .header a:visited    {
+    color:#000000;
+    text-decoration:none;
+}
 
+.header a:hover    {
+    color:#e16d20;
+    text-decoration:none;
+}
+
+.bidding_details    {
+    font-size:13pt;
+    font-weight:bold;    
+}
+
+.benefit_title    {
+    font-size:18pt;
+}
 </style>
 
 <!-- 
@@ -113,53 +153,89 @@ HTML
 ///////////////
  -->
 
-<title>TITLE</title>
+<title>UnLocal Benefit Art Auction 2017</title>
 </head>
 
 
 <body>
 
-<div id="bid_form">
+<!-- <div id="bid_form">
   <iframe class="airtable-embed" src="https://airtable.com/embed/shrOKZPq0CKzZACRY?backgroundColor=cyan" frameborder="0" onmousewheel=""  style="background: transparent; border: 1px solid #ccc;"></iframe>
-</div>
+</div> -->
 
 <div class="bodycontainer">
 
 
 <div class="header">
+<h1>
+OUR [YOURS AND MINE] FUTURE<BR/>
+<span class="benefit_title">UNLOCAL BENEFIT AUCTION</span></h1>
     <div class="address">
     <pre>
-Sunday, October 29th, 6–8pm
-    
+
+Online bidding will begin here on Sunday, October 22nd.  
+
+Reception on Sunday, October 29th, 6–8pm
 Klaus von Nichtssagend Gallery 
-54 Ludlow Street
-New York, NY, 10002
+54 Ludlow Street, New York, NY, 10002
     </pre>
         <div class="logo">
-        <img src="logo.jpg" />
+        <a href="http://www.unlocal.org/main-page/" target="_blank"><img src="logo.png" /></a>
         </div>
     </div>
     <div class="unlocal-text">
 <h3>
 UnLocal is a non-profit law firm that provides free legal 
-representation and education for immigrants in New York City. 
-They focus on the exceptionally difficult cases of people who 
-are facing deportation, primarily refugees and asylum seekers.
+representation and education to undocumented immigrants in New York City. 
+Through community-led and culturally responsive rights and policy 
+workshops, UnLocal's aim is to identify and serve those who are most 
+in need of caring and high quality legal representation, 
+including minors, asylum seekers, and their families. 
+With this collaborative model, the goal is to empower immigrant communities 
+to respond effectively to the rapidly shifting U.S. immigration system.  
+</h3>
+
+<h3>
+The goal of this auction is to raise enough funds for UnLocal to hire another full-time immigration attorney.
+</h3>
+<h2 class="bidding_details">Bidding Details</h2>
+<h3>
+Online bidding will begin on Sunday, October 22nd.
 </h3>
 <h3>
-With this auction, our goal is to raise enough funding for 
-UnLocal to hire another immigration attorney full-time.
+A reception and in-person silent auction will take place from on 
+Sunday, October 29th from 6-8 p.m. at Klaus von Nichtssagend Gallery. 
 </h3>
 <h3>
-Bidding will begin online Sunday, October 22nd, one (1) week 
-prior to the event. The Sunday, October 29th event will take 
-place from 6-8pm at Klaus von Nichtssagend gallery and will be 
-a combination of silent and live auction, with absentee bidding 
-facilitated through our online platform.
+Online bidding will continue until 7:30pm that evening, at which point 
+only absentee bidding by phone will be received until the auction closes at 8pm.
 </h3>
+<h3>
+To opt-in to absentee bidding by phone during the silent auction on the 29th, 
+please RSVP with <b>info@unlocalartauction.org</b>. All other inquiries may also be directed to this address.
+</h3>
+<h3>
+If you want to contribute with a general donation, you can do so here: 
+<a href="http://www.unlocal.org/donate/" target="new"><b><u>DONATE</u></b></a> 
+</h3>
+
+<h3>
+– – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – – –
+</h3>
+<h2>Benefit Committee</h2>
+    
+<h3 class="artists"><a href="https://www.bridgetdonahue.nyc/" target="_blank">Bridget Donahue</a>, 
+<a href="http://www.essexstreet.biz/" target="_blank">ESSEX STREET</a>, 
+<a href="http://shaze.info/" target="_blank">Sharon Hayes</a>, 
+<a href="http://klausgallery.com/" target="_blank">Klaus von Nichtssagend Gallery</a>,
+<a href="http://www.thenyic.org/" target="_blank">The New York Immigration Coalition (NYIC)</a>, 
+<a href="http://www.unlocal.org/main-page/" target="_blank">UnLocal</a>
+Supported by <a href="http://www.fineartframeworks.com/" target="_blank">Fine Art Frameworks</a>, 
+and with food by the <a href="http://domesticperformanceagency.com/" target="_blank">Domestic Performance Agency</a></h3>
 <h2>
 Works by:
 </h2>
+
 <h3 class="artists">
 DOUG ASHFORD, FIA BACKSTRÖM, SEBASTIAN BLACK, SASCHA BRAUNIG, TOM BURR, 
 JOSHUA CALEB WEIBLEY, ALEX CARVER, SUSAN CIANCIOLO, PHOEBE d’HEURLE, 
@@ -176,46 +252,50 @@ AVERY SINGER, BEN SISTO, MEREDYTH SPARKS, A.L. STEINER, CHEYNEY THOMPSON
 
 
 
-	<div id="artwork_container">
-		<h1></h1>
-			<div class="artwork" v-for="record in records">
-					<div class="artwork_images" v-for="attachment in record.fields.Attachments">
-             <a v-bind:href="attachment.thumbnails.large.url" target="new">
-               <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" />
-						 </a>
+    <div id="artwork_container">
+        <h1></h1>
+            <div class="artwork" v-for="record in records">
+                    <div class="artwork_images" v-for="attachment in record.fields.Attachments">
+            		<a v-if="record.fields['Artwork Link']" :href="record.fields['Artwork Link']" >
+									 <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
+								</a>
+             		<a v-else v-bind:href="attachment.thumbnails.large.url" target="_blank">
+									 <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
+								 </a>
           </div>
           <div class="info">
             <div class="artwork_artist">{{ record.fields['Artist'] }}</div>
-            <div class="artwork_title">{{ record.fields['Title'] }}</div>
-            <div class="artwork_year">{{ record.fields['Year'] }}</div>
+            <div class="artwork_title">{{ record.fields['Title'] }}, 
+            <span class="artwork_year">{{ record.fields['Year'] }}</span></div>
             <div class="artwork_medium_dimensions">{{ record.fields['Medium-Dimensions'] }}</div>
             <div class="artwork_edition">{{ record.fields['Edition'] }}</div>
             
             <div class="artwork_courtesy">{{ record.fields['Courtesy'] }}</div>
             
-            <!-- <div class="artwork_maxbid_name">{{ record.fields['Max Bidder Name'][0] }}</div> -->
-            <div class="artwork_maxbid_amount">${{ record.fields['Max Bid'] }}</div> 
+            <div class="artwork_emv">Estimate {{ record.fields['EMV'] }}</div>
+            <div v-if="record.fields['Max Bidder Name'][0]" class="artwork_maxbid_amount">Current Bid ${{ record.fields['Max Bid'] }}</div>
+            <div v-else class="artwork_maxbid_amount">Starting Bid ${{ record.fields['Max Bid'] }}</div>
         </div>
       </div>
   </div>
 
 
 
+<div class="footer">
 
+<h2>Organized by:</h2>
+Raoul Anchondo, Christhian Diaz, Ingrid Bromberg Kennedy, Leah Pires
+
+</div>
 
 <script>
-
 var apiURL = "https://api.airtable.com/v0/appSUkudxLxnEx8vY/Items%20to%20bid%20on?api_key=keyoQpvlH7D3w9kIB&view=Bidding%20Display";
-
 app = new Vue({
-
   el: '#artwork_container',
-
   data: {
     records: null,
     timer: null
   },
-
   created: function () {
     this.fetchData();
     this.timer = setInterval(this.fetchData, 30 * 1000)
@@ -223,7 +303,6 @@ app = new Vue({
   beforeDestroy: function() {
     clearInterval(this.timer)
   },
-
   methods: {
     fetchData: function () {
       var xhr = new XMLHttpRequest()
@@ -240,9 +319,8 @@ app = new Vue({
 </script>
 
 
+
 </body>
 </html>
-
-
 
 
