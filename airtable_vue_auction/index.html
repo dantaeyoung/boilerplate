@@ -52,19 +52,15 @@ body {
 .artwork_courtesy, .artwork_emv {
     padding:8px 0px 0px 0px;
 }
-
 .artwork_title    {
     font-style:italic;
 }
-
 .artwork_year    {
     font-style:normal;
 }
-
 .artwork_maxbid_amount    {
     font-weight:bold;
 }
-
 .artwork {
     display: block;
     float: left;
@@ -131,20 +127,48 @@ h1
     color:#000000;
     text-decoration:none;
 }
-
 .header a:hover    {
     color:#e16d20;
     text-decoration:none;
 }
-
 .bidding_details    {
     font-size:13pt;
     font-weight:bold;    
 }
-
 .benefit_title    {
     font-size:18pt;
 }
+
+.artwork_sold_notice  {
+  color: red;
+  font-size: 18pt;
+  font-weight: bold;
+  display: none;
+}
+
+/* sold */
+
+.artwork_sold {
+  opacity: 0.5;
+  background-color: white;
+}
+.artwork_sold .artwork_maxbid_amount {
+  display: none;
+}
+.artwork_sold .artwork_sold_notice {
+  display: block;
+}
+
+/* has a bid */
+.artwork_hasbid {
+  background-color: #ccedff; /* CHANGE ME*/
+}
+
+/* yet unbid on  */
+
+.artwork_unbid {
+}
+
 </style>
 
 <!-- 
@@ -159,9 +183,9 @@ HTML
 
 <body>
 
-<!-- <div id="bid_form">
+<div id="bid_form">
   <iframe class="airtable-embed" src="https://airtable.com/embed/shrOKZPq0CKzZACRY?backgroundColor=cyan" frameborder="0" onmousewheel=""  style="background: transparent; border: 1px solid #ccc;"></iframe>
-</div> -->
+</div>
 
 <div class="bodycontainer">
 
@@ -203,7 +227,7 @@ The goal of this auction is to raise enough funds for UnLocal to hire another fu
 Online bidding will begin on Sunday, October 22nd.
 </h3>
 <h3>
-A reception and in-person silent auction will take place from on 
+A reception and in-person silent auction will take place on 
 Sunday, October 29th from 6-8 p.m. at Klaus von Nichtssagend Gallery. 
 </h3>
 <h3>
@@ -211,8 +235,8 @@ Online bidding will continue until 7:30pm that evening, at which point
 only absentee bidding by phone will be received until the auction closes at 8pm.
 </h3>
 <h3>
-To opt-in to absentee bidding by phone during the silent auction on the 29th, 
-please RSVP with <b>info@unlocalartauction.org</b>. All other inquiries may also be directed to this address.
+To opt-in to absentee bidding by phone during the silent auction on the 29th or to buy it now 
+please write <b>info@unlocalartauction.org</b>. All other inquiries may also be directed to this address.
 </h3>
 <h3>
 If you want to contribute with a general donation, you can do so here: 
@@ -254,14 +278,14 @@ AVERY SINGER, BEN SISTO, MEREDYTH SPARKS, A.L. STEINER, CHEYNEY THOMPSON
 
     <div id="artwork_container">
         <h1></h1>
-            <div class="artwork" v-for="record in records">
+            <div class="artwork" v-for="record in records" v-bind:class="artworkClasses(record)" >
                     <div class="artwork_images" v-for="attachment in record.fields.Attachments">
-            		<a v-if="record.fields['Artwork Link']" :href="record.fields['Artwork Link']" >
-									 <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
-								</a>
-             		<a v-else v-bind:href="attachment.thumbnails.large.url" target="_blank">
-									 <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
-								 </a>
+                    <a v-if="record.fields['Artwork Link']" v-bind:href="record.fields['Artwork Link']" target="_blank" >
+                                     <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
+                                </a>
+                     <a v-else v-bind:href="attachment.thumbnails.large.url" target="_blank">
+                                     <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
+                                 </a>
           </div>
           <div class="info">
             <div class="artwork_artist">{{ record.fields['Artist'] }}</div>
@@ -275,6 +299,7 @@ AVERY SINGER, BEN SISTO, MEREDYTH SPARKS, A.L. STEINER, CHEYNEY THOMPSON
             <div class="artwork_emv">Estimate {{ record.fields['EMV'] }}</div>
             <div v-if="record.fields['Max Bidder Name'][0]" class="artwork_maxbid_amount">Current Bid ${{ record.fields['Max Bid'] }}</div>
             <div v-else class="artwork_maxbid_amount">Starting Bid ${{ record.fields['Max Bid'] }}</div>
+            <div class="artwork_sold_notice">SOLD</div> <!-- this is hidden by default, shows up when artwork is sold -->
         </div>
       </div>
   </div>
@@ -304,6 +329,13 @@ app = new Vue({
     clearInterval(this.timer)
   },
   methods: {
+    artworkClasses: function(record) {
+			return {
+				"artwork_sold": record.fields['Is Sold'],
+				"artwork_hasbid": !(record.fields['Is Sold']) && record.fields['Max Bidder Name'][0],
+				"artwork_unbid": !(record.fields['Is Sold']) && !(record.fields['Max Bidder Name'][0])
+			}
+    },
     fetchData: function () {
       var xhr = new XMLHttpRequest()
       var self = this
@@ -322,5 +354,3 @@ app = new Vue({
 
 </body>
 </html>
-
-
