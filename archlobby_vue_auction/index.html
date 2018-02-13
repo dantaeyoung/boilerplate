@@ -1,0 +1,301 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+
+<script>
+$(function() {
+    //JAVASCRIPT HERE
+});
+</script>
+
+<!-- 
+///////////////
+CSS
+///////////////
+ -->
+
+<style type="text/css">
+
+@font-face {
+    font-family: "Favorit";
+    src: url("assets/favorit-regular.woff") format('woff');
+}
+
+body {
+  font-family: 'Favorit', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+   background-image: url("assets/grid.jpg");
+
+}
+.bodycontainer {
+  display: block;
+  margin: 0px 250px 0px 0px;
+}
+#bid_form iframe {
+    text-align: right;
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  transform: scale(0.75);
+  transform-origin: top right;
+  height: calc(100% / 0.75);
+}
+#artwork_container {
+    margin:0px 0px 30px 30px;
+}
+.footer    {
+  clear: both;
+    margin:30px 0px 30px 30px;
+    color:grey;
+}
+.artwork_courtesy, .artwork_emv {
+    padding:8px 0px 0px 0px;
+}
+.artwork_title    {
+    font-style:italic;
+}
+.artwork_year    {
+    font-style:normal;
+}
+.artwork_maxbid_amount    {
+    font-weight:bold;
+}
+.artwork {
+    display: block;
+    float: left;
+    width: 245px;
+    text-align: center;
+    height: 340px;
+    font-size:10pt;
+      position: relative;
+  margin: 0px 10px 10px 0px;
+}
+
+.artwork_content, .artwork_background {
+  position: absolute;
+  top: 0px;
+}
+
+.artwork_content {
+  z-index: 1000;
+  padding: 10px;
+}
+
+.artwork_background {
+  background-color: #ffc266;
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+}
+
+.artwork_image {
+    max-height: 150px;
+    max-height: 150px
+    height: auto;
+    float:none;
+}
+.info    {
+    text-align: center;
+}
+.header  {
+    display:block;
+    margin:30px 0px 40px 30px;
+}
+.address pre    {
+    float:left;
+    font-weight:bold;
+    font-size:12pt;
+    width:700px;
+    padding:9px 0px 0px 0px;
+    font-family:helvetica;
+    
+}
+.unlocal-text    {
+    float:none;
+    font-weight:normal;
+    font-size:10pt;
+    width:750px;
+    text-align:justify;
+    line-height:20px;
+    padding:20px 0px 0px 0px;
+}
+.logo    {
+    float:right;
+}
+h3    {
+    font-weight:normal;
+}
+h3.artists    {
+    font-size:10pt;
+}
+h2    {
+    font-weight:normal;
+    font-size:11pt;
+}
+h1
+    {
+    font-size:20pt;
+    margin:0px 0px -18px 0px;    
+}
+a:link, a:visited    {
+    color:#000000;
+    text-decoration:underline;
+}
+a:hover    {
+    color:#000000;
+    text-decoration:none;
+}
+.bidding_details    {
+    font-size:13pt;
+    font-weight:bold;    
+}
+.benefit_title    {
+    font-size:18pt;
+}
+
+.artwork_sold_notice  {
+  color: red;
+  font-size: 18pt;
+  font-weight: bold;
+  display: none;
+}
+
+/* sold */
+
+.artwork_sold {
+  opacity: 0.5;
+  background-color: white;
+}
+.artwork_sold .artwork_maxbid_amount {
+  display: none;
+}
+.artwork_sold .artwork_sold_notice {
+  display: block;
+}
+
+/* has a bid */
+.artwork_hasbid {
+  /*background-color: #ffc266; /* CHANGE ME*/
+}
+
+/* yet unbid on  */
+
+.artwork_unbid {
+}
+
+</style>
+
+<!-- 
+///////////////
+HTML
+///////////////
+ -->
+
+<title>Architecture Lobby Auction</title>
+</head>
+
+
+<body>
+
+<div id="bid_form">
+  <iframe class="airtable-embed" src="https://airtable.com/embed/shr6FZFvTm3mdag0A?backgroundColor=cyan" frameborder="0" onmousewheel=""  style="background: transparent; border: 1px solid #ccc;"></iframe>
+</div>
+
+<div class="bodycontainer">
+
+
+  <div class="header">
+    <h1>Architecture Lobby Auction</h1>
+  </div>
+
+    <div id="artwork_container">
+            <div class="artwork" v-for="record in records" v-bind:class="artworkClasses(record)" >
+              <div class="artwork_content">
+                <div class="artwork_images" v-for="attachment in record.fields.Images">
+                      <a v-if="record.fields['Link']" v-bind:href="record.fields['Link']" target="_blank" >
+                         <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
+                      </a>
+                      <a v-else v-bind:href="attachment.thumbnails.large.url" target="_blank">
+                          <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
+                      </a>
+                </div>
+                <div class="info">
+                  <div class="artwork_item_number">{{ record.fields['Item Number'] }}</div>
+                  <div class="artwork_artist">{{ record.fields['Artist'] }}</div>
+                  <div class="artwork_title">{{ record.fields['Title'] }}, 
+                  <span class="artwork_year">{{ record.fields['Year'] }}</span></div>
+                  <div class="artwork_medium">{{ record.fields['Medium'] }}</div>
+                  <div class="artwork_type">{{ record.fields['Type'] }}</div>
+                  <div class="artwork_location">{{ record.fields['Location'] }}</div>
+                  <div class="artwork_dimensions">{{ record.fields['Dimensions'] }}</div>
+                  <div v-if="record.fields['Max Bidder Name'][0]" class="artwork_maxbid_name">Max Bidder: {{ record.fields['Max Bidder Name'][0] }}</div>
+                  <div v-if="record.fields['Max Bidder Name'][0]" class="artwork_maxbid_amount">Current Bid ${{ record.fields['Max Bid'] }}</div>
+                  <div v-else class="artwork_maxbid_amount">Starting Bid ${{ record.fields['Max Bid'] }}</div>
+                  <div class="artwork_sold_notice">SOLD</div> <!-- this is hidden by default, shows up when artwork is sold -->
+                  <!--<div class="artwork_bid_link"><a v-bind:href="'bid.html?item=' + record.fields['Item Number']">BID NOW</a></div>-->
+                </div>
+              </div>
+              <div class="artwork_background"></div>
+        </div>
+  </div>
+
+
+
+  <div class="footer">
+    <h2>Organized by:</h2>
+    <a href="http://architecture-lobby.org/">The Architecture Lobby</a>
+  </div>
+
+</div>
+
+<script>
+var apikey = "apikeyapikey";
+var apiURL = "https://api.airtable.com/v0/appH0xThMA2bKH9Ly/Works?api_key=" + apikey + "&view=Bidding%20Display";
+app = new Vue({
+  el: '#artwork_container',
+  data: {
+    records: null,
+    timer: null
+  },
+  created: function () {
+    this.fetchData();
+    this.timer = setInterval(this.fetchData, 30 * 1000)
+  },
+  beforeDestroy: function() {
+    clearInterval(this.timer)
+  },
+  methods: {
+    artworkClasses: function(record) {
+			return {
+				"artwork_hasbid": record.fields['Max Bidder Name'][0],
+				"artwork_unbid": !(record.fields['Max Bidder Name'][0])
+			}
+    },
+    fetchData: function () {
+      var xhr = new XMLHttpRequest()
+      var self = this
+      xhr.open('GET', apiURL)
+      xhr.onload = function () {
+        self.records = JSON.parse(xhr.responseText).records
+        console.log("Fetched data.");
+        console.log(self.records);
+      }
+      xhr.send()
+    }
+  }
+})
+</script>
+
+
+
+</body>
+</html>
