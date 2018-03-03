@@ -1,10 +1,12 @@
 
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
 
 <script>
@@ -31,16 +33,17 @@ body {
     margin: 0px;
     padding: 0px;
     height: 100%;
-   background-image: url("assets/grid.jpg");
+  background-image: url("assets/grid.jpg");
+  background-size: 240px 240px;
 
 }
 .bodycontainer {
   display: block;
-  margin: 0px 250px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 #bid_form iframe {
     text-align: right;
-  width: 300px;
+  width: 460px;
   height: 100%;
   position: fixed;
   top: 0px;
@@ -50,7 +53,7 @@ body {
   height: calc(100% / 0.75);
 }
 #artwork_container {
-    margin:0px 0px 30px 30px;
+    margin:0px 0px 24px 24px;
 }
 .footer    {
   clear: both;
@@ -72,12 +75,12 @@ body {
 .artwork {
     display: block;
     float: left;
-    width: 245px;
+    width: 360px;
     text-align: center;
-    height: 340px;
-    font-size:10pt;
-      position: relative;
-  margin: 0px 10px 10px 0px;
+    height: 540px;
+    font-size:9pt;
+    position: relative;
+    margin: 0px 10px 10px 0px;
 }
 
 .artwork_content, .artwork_background {
@@ -87,7 +90,11 @@ body {
 
 .artwork_content {
   z-index: 1000;
-  padding: 10px;
+  padding: 20px;
+  float: middle;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .artwork_background {
@@ -98,17 +105,17 @@ body {
 }
 
 .artwork_image {
-    max-height: 150px;
-    max-height: 150px
+    max-height: 200px;
+    max-width: 200px;
     height: auto;
-    float:none;
+    float: none;
 }
 .info    {
     text-align: center;
 }
 .header  {
     display:block;
-    margin:30px 0px 40px 30px;
+    margin:20px 0px 40px 30px;
 }
 .address pre    {
     float:left;
@@ -194,27 +201,37 @@ a:hover    {
 
 </style>
 
+
+
+
 <!-- 
 ///////////////
 HTML
 ///////////////
  -->
 
-<title>Architecture Lobby Auction</title>
+<title>The Architecture Lobby</title>
 </head>
 
 
 <body>
 
-<div id="bid_form">
-  <iframe class="airtable-embed" src="https://airtable.com/embed/shr6FZFvTm3mdag0A?backgroundColor=cyan" frameborder="0" onmousewheel=""  style="background: transparent; border: 1px solid #ccc;"></iframe>
-</div>
+<!--<div id="bid_form">-->
+  <!--<iframe class="airtable-embed" src="https://airtable.com/embed/shr6FZFvTm3mdag0A?backgroundColor=cyan" frameborder="0" onmousewheel=""  style="background: transparent; border: 2px solid #ccecf9;"></iframe>-->
+<!--</div>-->
 
 <div class="bodycontainer">
 
 
   <div class="header">
-    <h1>Architecture Lobby Auction</h1>
+    <h1>Infrastructure:  <br> An Architecture Labor Auction</h1>
+
+    <h3> Bidding closes in 
+    <span data-cdt-id="2090710">--:--:--:--</span>. </h3>
+
+
+
+
   </div>
 
     <div id="artwork_container">
@@ -224,21 +241,23 @@ HTML
                       <a v-if="record.fields['Link']" v-bind:href="record.fields['Link']" target="_blank" >
                          <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
                       </a>
-                      <a v-else v-bind:href="attachment.thumbnails.large.url" target="_blank">
-                          <img class="artwork_image" v-bind:src="attachment.thumbnails.large.url" /> 
+                      <a v-else v-bind:href="attachment.url" target="_blank">
+                          <img class="artwork_image" v-bind:src="attachment.url" /> 
                       </a>
                 </div>
                 <div class="info">
-                  <div class="artwork_item_number">{{ record.fields['Item Number'] }}</div>
-                  <div class="artwork_artist">{{ record.fields['Artist'] }}</div>
-                  <div class="artwork_title">{{ record.fields['Title'] }}, 
-                  <span class="artwork_year">{{ record.fields['Year'] }}</span></div>
-                  <div class="artwork_medium">{{ record.fields['Medium'] }}</div>
-                  <div class="artwork_type">{{ record.fields['Type'] }}</div>
-                  <div class="artwork_location">{{ record.fields['Location'] }}</div>
-                  <div class="artwork_dimensions">{{ record.fields['Dimensions'] }}</div>
+                  <div> <br> </div>
+                  <div class="artwork_item_number">Item Number: {{ record.fields['Item Number'] }}</div>
+                  <div class="artwork_artist"><b>{{ record.fields['Artist'] }}</b></div>
+                  <div class="artwork_title">{{ record.fields['Title'] }} </div>
+
+                  <div class="artwork_url"> <a v-bind:href="record.fields['URL']" target="_blank"> {{ record.fields['URL'] }}</a> </div>
+                  <div> <br> </div>
+                  <div class="artwork_description">{{ record.fields['Description'] }} </div>
+                  <div class="artwork_type"> <b> {{ record.fields['Type'] }} </b> </div>
+                  <div> <br> </div>
                   <div v-if="record.fields['Max Bidder Name'][0]" class="artwork_maxbid_name">Max Bidder: {{ record.fields['Max Bidder Name'][0] }}</div>
-                  <div v-if="record.fields['Max Bidder Name'][0]" class="artwork_maxbid_amount">Current Bid ${{ record.fields['Max Bid'] }}</div>
+                  <div v-if="record.fields['Max Bidder Name'][0]" class="artwork_maxbid_amount">Current Bid ${{ record.fields['Displayed Max Bid'] }}</div>
                   <div v-else class="artwork_maxbid_amount">Starting Bid ${{ record.fields['Max Bid'] }}</div>
                   <div class="artwork_sold_notice">SOLD</div> <!-- this is hidden by default, shows up when artwork is sold -->
                   <!--<div class="artwork_bid_link"><a v-bind:href="'bid.html?item=' + record.fields['Item Number']">BID NOW</a></div>-->
@@ -257,6 +276,31 @@ HTML
 
 </div>
 
+
+
+<script src="https://w2.countingdownto.com/2090710.js"></script>
+
+<script>
+
+window.ss = {};
+function startScroller() {
+	scrollUpDown("linear", 100000);
+}
+
+function scrollUpDown(easing, dur) {
+	var sTop;
+	console.log("triggering animatE1");
+  $('html, body')
+		.animate({
+			scrollTop: $(document).height() - $(window).height()
+		}, dur, easing)
+		.animate({
+			scrollTop: 0
+		}, dur, easing, function() {
+			scrollUpDown(dur);
+		})
+}
+</script>
 <script>
 var apikey = "keyoQpvlH7D3w9kIB";
 var apiURL = "https://api.airtable.com/v0/appH0xThMA2bKH9Ly/Works?api_key=" + apikey + "&view=Bidding%20Display";
@@ -270,15 +314,18 @@ app = new Vue({
     this.fetchData();
     this.timer = setInterval(this.fetchData, 30 * 1000)
   },
+  updated: function () {
+    startScroller();
+  },
   beforeDestroy: function() {
     clearInterval(this.timer)
   },
   methods: {
     artworkClasses: function(record) {
-			return {
-				"artwork_hasbid": record.fields['Max Bidder Name'][0],
-				"artwork_unbid": !(record.fields['Max Bidder Name'][0])
-			}
+            return {
+                "artwork_hasbid": record.fields['Max Bidder Name'][0],
+                "artwork_unbid": !(record.fields['Max Bidder Name'][0])
+            }
     },
     fetchData: function () {
       var xhr = new XMLHttpRequest()
