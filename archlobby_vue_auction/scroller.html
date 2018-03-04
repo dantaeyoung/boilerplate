@@ -295,27 +295,40 @@ HTML
 
 window.ss = {};
 function startScroller() {
-  if(getParam("scrollDuration")) {
-		var scrollDur = parseInt(getParam("scrollDuration"));
-	} else {
-		var scrollDur = 100000;
-	}
-	console.log("scrollDur = " + scrollDur);
-	scrollUpDown("linear", scrollDur);
+
+  if(!(window.scrollStarted)) {
+    if(getParam("scrollDuration")) {
+      window.scrollDur = parseInt(getParam("scrollDuration"));
+    } else {
+      window.scrollDur = 100000;
+    }
+    console.log("scrollDur = " + window.scrollDur);
+    scrollUpDown("linear");
+    window.scrollStarted = true;
+  }
+
 }
 
-function scrollUpDown(easing, dur) {
+function scrollUpDown(eas) {
 	var sTop;
 	console.log("triggering animatE1");
-  $('html, body')
+  $('html')
 		.animate({
 			scrollTop: $(document).height() - $(window).height()
-		}, dur, easing)
+    }, {
+      duration: window.scrollDur,
+      easing: eas
+    })
 		.animate({
 			scrollTop: 0
-		}, dur, easing, function() {
-			scrollUpDown(dur);
-		})
+    }, {
+      duration: window.scrollDur,
+      easing: eas,
+      complete: function() {
+        console.log("COMPLETE");
+        scrollUpDown(eas);
+      }
+   })
 }
 </script>
 <script>
@@ -328,14 +341,8 @@ app = new Vue({
     timer: null
   },
   created: function () {
-		if(getParam("updateDuration")) {
-			var updateDur = parseInt(getParam("updateDuration"));
-		} else {
-			var updateDur = 30*1000;
-		}
-		console.log("updateDur = " + updateDur);
 		this.fetchData();
-    this.timer = setInterval(this.fetchData, updateDur)
+    this.timer = setInterval(this.fetchData, 5 * 1000);
   },
   updated: function () {
     startScroller();
