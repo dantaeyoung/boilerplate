@@ -10,6 +10,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
 
 <script>
+
+function getParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 $(function() {
     //JAVASCRIPT HERE
 });
@@ -284,7 +295,13 @@ HTML
 
 window.ss = {};
 function startScroller() {
-	scrollUpDown("linear", 100000);
+  if(getParam("scrollDuration")) {
+		var scrollDur = parseInt(getParam("scrollDuration"));
+	} else {
+		var scrollDur = 100000;
+	}
+	console.log("scrollDur = " + scrollDur);
+	scrollUpDown("linear", scrollDur);
 }
 
 function scrollUpDown(easing, dur) {
@@ -311,8 +328,14 @@ app = new Vue({
     timer: null
   },
   created: function () {
-    this.fetchData();
-    this.timer = setInterval(this.fetchData, 30 * 1000)
+		if(getParam("updateDuration")) {
+			var updateDur = parseInt(getParam("updateDuration"));
+		} else {
+			var updateDur = 30*1000;
+		}
+		console.log("updateDur = " + updateDur);
+		this.fetchData();
+    this.timer = setInterval(this.fetchData, updateDur)
   },
   updated: function () {
     startScroller();
